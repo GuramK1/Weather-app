@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 203 89% 96%;
+    --foreground: 220 39% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 39% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 39% 11%;
+
+    --primary: 210 100% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 60% 97%;
+    --secondary-foreground: 220 39% 11%;
+
+    --muted: 220 43% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 198 88% 85%;
+    --accent-foreground: 220 39% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 210 100% 56%;
+
+    --radius: 1rem;
+
+    --weather-day-primary: 210 100% 56%;
+    --weather-day-secondary: 198 88% 85%;
+    --weather-day-bg: linear-gradient(
+      135deg,
+      hsl(200 100% 85%),
+      hsl(210 100% 90%)
+    );
+    --weather-card-bg: hsla(0, 0%, 100%, 0.7);
+    --weather-glass: hsla(255, 255%, 255%, 0.1);
+    --weather-shadow: 0 8px 32px hsla(210, 100%, 56%, 0.15);
+    --weather-glow: 0 0 20px hsla(210, 100%, 56%, 0.3);
+
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 39% 11%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 28% 14%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 28% 14%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 39% 11%;
+
+    --secondary: 220 28% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 28% 18%;
+    --muted-foreground: 220 9% 65%;
+
+    --accent: 240 57% 26%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 28% 20%;
+    --input: 220 28% 20%;
+    --ring: 217 91% 60%;
+
+    --weather-night-primary: 217 91% 60%;
+    --weather-night-secondary: 240 57% 26%;
+    --weather-night-bg: linear-gradient(
+      135deg,
+      hsl(220 39% 11%),
+      hsl(240 21% 15%)
+    );
+    --weather-card-bg: hsla(220, 28%, 14%, 0.8);
+    --weather-glass: hsla(255, 255%, 255%, 0.05);
+    --weather-shadow: 0 8px 32px hsla(220, 39%, 11%, 0.8);
+    --weather-glow: 0 0 20px hsla(217, 91%, 60%, 0.4);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    transition: var(--transition-smooth);
+  }
+}
+
+@layer components {
+  .weather-card {
+    @apply rounded-2xl p-6;
+    background: var(--weather-card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--weather-glass);
+    box-shadow: var(--weather-shadow);
+    transition: var(--transition-smooth);
+  }
+
+  .weather-card:hover {
+    box-shadow: var(--weather-glow), var(--weather-shadow);
+    transform: translateY(-2px);
+  }
+
+  .weather-search {
+    @apply w-full px-6 py-4 rounded-2xl text-lg;
+    background: var(--weather-card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--weather-glass);
+    transition: var(--transition-smooth);
+  }
+
+  .weather-search:focus {
+    outline: none;
+    box-shadow: var(--weather-glow);
+    border-color: hsl(var(--primary));
+  }
+
+  .weather-btn {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-300;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 4px 15px hsla(var(--primary), 0.3);
+  }
+
+  .weather-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsla(var(--primary), 0.4);
+  }
+
+  .theme-toggle {
+    @apply p-3 rounded-full;
+    background: var(--weather-card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--weather-glass);
+    transition: var(--transition-bounce);
+  }
+
+  .theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--weather-glow);
+  }
+
+  .weather-icon {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--accent))
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :root .gradient-text {
+    background: linear-gradient(135deg, hsl(210 60% 55%), hsl(240 50% 65%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .dark .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--accent))
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
